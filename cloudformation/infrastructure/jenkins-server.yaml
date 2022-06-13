@@ -4,14 +4,14 @@ Resources:
     Jenkins:
         Type: AWS::EC2::Instance
         Properties:
-            ImageId: 'ami-042e8287309f5df03'
-            InstanceType: 't2.large'
+            ImageId: 'ami-048340c0b4c1e2251'
+            InstanceType: 't2.xlarge'
             IamInstanceProfile: 'concordia-jenkins-ec2-role'
             BlockDeviceMappings:
                 - DeviceName: /dev/sda1
                   Ebs:
                       VolumeSize: 128
-                      VolumeType: gp2
+                      VolumeType: gp3
                       DeleteOnTermination: true
             NetworkInterfaces:
                 - AssociatePublicIpAddress: true
@@ -43,10 +43,10 @@ Resources:
                       openjdk-8-jdk jenkins \
                       nginx awscli
                     usermod -aG docker jenkins
-                    snap install postgresql12
+                    snap install postgresql13
                     pip3 install awscli --upgrade
             Tags:
                 - Key: Name
-                  Value: Jenkins
+                  Value: Jenkins2
                 - Key: Environment
                   Value: dev
