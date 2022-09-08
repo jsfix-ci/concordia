@@ -19,6 +19,7 @@
     <meta property="og.description" content="{{ asset.item.project.description }}" />
     <meta property="og.type" content="website" />
     <meta property="og.image" content="{{ thumbnail_url }}" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
 {% endblock head_content %}
 
 {% block breadcrumbs %}
@@ -134,6 +135,25 @@
             </div>
 
             <div id="editor-column" class="d-flex flex-column flex-nowrap justify-content-between p-3 d-print-block">
+                <section class="demo">
+                    <div class="wdzt-table-layout wdzt-full-width">
+                        <div class="wdzt-row-layout">
+                            <div class="wdzt-cell-layout column-2">
+                                <div id="openseadragon"></div>
+                            </div>
+                            <div class="wdzt-cell-layout column-2">
+                                <h3>Available filters</h3>
+                                <ul id="available">
+                                </ul>
+
+                                <h3>Selected filters</h3>
+                                <ul id="selected"></ul>
+
+                                <p>Drag and drop the selected filters to set their order.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <div class="flex-grow-1 d-flex flex-column d-print-block">
                     <div class="tx-status-display">
                         <span class="tx-submitted" {% if transcription_status != 'submitted' %}hidden{% endif %}>
@@ -512,11 +532,13 @@
 {% endblock main_content %}
 
 {% block body_scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="{% static 'split.js/dist/split.min.js' %}"></script>
     <script src="{% static 'openseadragon/build/openseadragon/openseadragon.min.js' %}"></script>
     <script src="{% static 'openseadragon-filtering/openseadragon-filtering.js' %}"></script>
     <script src="{% static 'js/contribute.js' %}"></script>
     <script src="{% static 'js/asset-reservation.js' %}"></script>
+    <script src="{% static 'js/image-filtering.js' %}"></script>
     <script>
         if (
             !localStorage.getItem("no-interface-banner") &&
@@ -555,7 +577,6 @@
             crossOriginPolicy: "Anonymous"
         });
     </script>
-
     <script>
         Split(["#viewer-column", "#editor-column"], {
             sizes: [50, 50],
