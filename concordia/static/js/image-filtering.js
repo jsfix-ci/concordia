@@ -4,6 +4,8 @@
 // the openseadragon-filtering demo with some minor modifications to work
 // with Concordia
 
+// test comment
+
 function Spinner(options) {
     options.$element.html(
         '<input type="text" size="1" ' +
